@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <title>PostYourCoctel</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <header>
+    <h2 style="fixed: left; margin-left: 100px;">Modificar un coctel</h2>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <form id="formModifyCoctel"
+            method="post"
+            action="/coctel/modifica?id={{coctel.key.urlsafe()}}"
+            enctype="multipart/form-data"
+            onsubmit="return check()"
+            role="form" class="col-md-9 go-right">
+
+        <div class="form-group">
+          <label for="modifyNombre">Nombre</label>
+          <input type="text" id="modifyNombre" name="modifyNombre" value="{{coctel.nombre}}" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label for="modifyIngredientes">Ingredientes</label>
+          <textarea id="modifyIngredientes" name="modifyIngredientes" rows="1" cols="60" class="form-control">{{coctel.ingredientes}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="modifyPasos">Pasos</label>
+          <textarea id="modifyPasos" name="modifyPasos" rows="2" cols="60" class="form-control">{{coctel.pasos}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="modifyAlcohol">Alcohol del coctel</label>
+          <select id="modifyAlcohol" name="modifyAlcohol" class="form-control">
+            <option value="GINEBRA">Ginebra</option>
+            <option value="VODKA">Vodka</option>
+            <option value="RON">Ron</option>
+            <option value="WHISKEY">whiskey</option>
+            <option value="OTRO">Otro</option>
+            <option selected="selected">{{coctel.alcohol}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="modifyDificultad">Dificultad</label>
+          <select id="modifyDificultad" name="modifyDificultad" class="form-control">
+            <option value="FACIL">Facil</option>
+            <option value="MEDIO">Medio</option>
+            <option value="DIFICIL">Dificil</option>
+            <option selected="selected">{{coctel.dificultad}}</option>
+          </select>
+        </div>
+
+        <input type="submit" value="Enviar" class="btn btn-primary btn-lg">
+      </form>
+    </div>
+  </div>
+
+  <script>
+          function check(){
+              const nombre = document.getElementById("modifyNombre");
+              const ingredientes = document.getElementById("modifyIngredientes");
+              const pasos = document.getElementById("modifyPasos");
+              const alcohol = document.getElementById("modifyAlcohol");
+              const dificultad = document.getElementById("modifyDificultad");
+
+              return ( nombre.nodeValue.trim().length >0
+                  && ingredientes.nodeValue.trim().length >0
+                  && pasos.nodeValue.trim().length >0
+                  && alcohol.nodeValue.trim().length >0
+                  && dificultad.nodeValue.trim().length >0)
+          }
+  </script>
+</body>
+</html>

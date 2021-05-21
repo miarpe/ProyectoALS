@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>PostYourCoctel</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+<body>
+  <header>
+    <h2 style="fixed: left; margin-left: 100px; ">Dar de alta un coctel nuevo</h2>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <form id="formAddCoctel"
+            method="post"
+            action="/coctel/nuevo"
+            enctype="multipart/form-data"
+            onsubmit="return check()"
+            role="form" class="col-md-9 go-right">
+
+        <div class="form-group">
+          <label for="addNombre">Nombre</label>
+          <input type="text" id="addNombre" name="addNombre" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label for="addIngredientes">Ingredientes</label>
+          <textarea id="addIngredientes" name="addIngredientes" rows="1" cols="60" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="addPasos">Pasos</label>
+          <textarea id="addPasos" name="addPasos" rows="2" cols="60" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="addAlcohol">Alcohol del coctel</label>
+          <select id="addAlcohol" name="addAlcohol" class="form-control">
+            <option value="GINEBRA">Ginebra</option>
+            <option value="VODKA">Vodka</option>
+            <option value="RON">Ron</option>
+            <option value="WHISKEY">whiskey</option>
+            <option value="OTRO">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="addDificultad">Dificultad</label>
+          <select id="addDificultad" name="addDificultad" class="form-control">
+            <option value="FACIL">Facil</option>
+            <option value="MEDIO">Medio</option>
+            <option value="DIFICIL">Dificil</option>
+          </select>
+        </div>
+
+        <input type="submit" value="Enviar" class="btn btn-primary btn-lg">
+      </form>
+    </div>
+  </div>
+
+  <script>
+          function check(){
+              const nombre = document.getElementById("addNombre");
+              const ingredientes = document.getElementById("addIngredientes");
+              const pasos = document.getElementById("addPasos");
+              const alcohol = document.getElementById("addAlcohol");
+              const dificultad = document.getElementById("addDificultad");
+
+
+              return ( nombre.nodeValue.trim().length >0
+                  && ingredientes.nodeValue.trim().length >0
+                  && pasos.nodeValue.trim().length >0
+                  && alcohol.nodeValue.trim().length >0
+                  && dificultad.nodeValue.trim().length >0)
+          }
+  </script>
+</body>
+</html>

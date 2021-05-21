@@ -1,0 +1,30 @@
+{% extends "header.html" %}
+
+{% block contenido %}
+
+    <h2> Listado de cocteles </h2>
+        {% if usr %}
+            <h3><a href="/coctel/nuevo">Nuevo coctel</a></h3>
+        {% else %}
+            <h3><a href="{{usr_url}}">Si quieres añadir un coctel debes registrarte</a></h3>
+        {% endif %}
+
+    {% if cocteles.count() > 0 %}
+
+    <div>
+
+        {% for coctel in cocteles %}
+
+
+            {% include "info_coctel.html" %}
+
+
+        {% endfor %}
+
+    </div>
+    {% else %}
+        <p><b>No hay cocteles registrados</b></p>
+    {% endif %}
+
+{% endblock %}
+

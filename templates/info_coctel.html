@@ -1,0 +1,25 @@
+<div class="card-body">
+    <h4><u>{{coctel.nombre}}</u></h4>
+    <p>Ingredientes: {{coctel.ingredientes}}</p>
+    <p>Pasos: {{coctel.pasos}}</p>
+    <p>Alcohol: {{coctel.alcohol}}</p>
+    <p>Dificultad: {{coctel.dificultad}}</p>
+    {% if coctel.usr_email == user.email %}
+        <p><a href="/coctel/modifica?id={{coctel.key.urlsafe()}}">Modifica</a></p>
+        <p><a href="/coctel/elimina?id={{coctel.key.urlsafe()}}">Elimina</a></p>
+    {% else %}
+        <p><b>No eres el propietario de este coctel por lo que no puedes borrar o modificarlo</b></p>
+    {% endif %}
+
+    {% if usr %}
+        {% if favlist|length > 0 %}
+            {% if coctel.key.urlsafe() in favlist %}
+                <a href="/fav/fav_unfav?id={{coctel.key.urlsafe()}}" class="btn btn-danger">UnFAV</a>
+            {% else %}
+                <a href="/fav/fav_unfav?id={{coctel.key.urlsafe()}}" class="btn btn-primary">FAV</a>
+            {% endif %}
+        {% else %}
+            <a href="/fav/fav_unfav?id={{coctel.key.urlsafe()}}" class="btn btn-primary">FAV</a>
+        {% endif %}
+    {% endif %}
+</div>
